@@ -1,6 +1,6 @@
 resource "time_sleep" "iam_propagation" {
-   depends_on = [
-    aws_iam_role.snowflake_s3, 
+  depends_on = [
+    aws_iam_role.snowflake_s3,
     aws_iam_role_policy_attachment.snowflake_s3,
   ]
 
@@ -15,7 +15,7 @@ resource "snowflake_pipe" "s3_pipe" {
   comment        = "Snowpipe for ${snowflake_stage.s3_stage.name}"
   copy_statement = var.snowpipe_copy_statement
 
- depends_on = [time_sleep.iam_propagation]
+  depends_on = [time_sleep.iam_propagation]
 }
 
 resource "aws_s3_bucket_notification" "s3_pipe" {
