@@ -12,7 +12,7 @@ terraform {
   }
 
   backend "remote" {
-    organization = "personal-labs"
+    organization = "<ADD YOUR TERRAFORM CLOUD ORG HERE"
 
     workspaces {
       name = "snowflake_dev"

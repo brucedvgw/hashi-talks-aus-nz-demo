@@ -43,8 +43,34 @@ terraform {
   }
   ```
 
-To provision type:
+* Create an S3 Bucket called `hashitalks-dev-snowflake-demo`in the same region as your Snowflake account
+
+* Create a folder for where your data is going to land called `hello-world`
+
+* To provision type:
 
 ```shell
 terraform apply
+```
+
+* Confirm connection between S3 and Snowflake by typing in a Snowflake Worksheet
+
+```sql
+LIST @STG_LANDING_HELLO_WORLD
+```
+
+* Confirm that no data exists in the new database
+
+```sql
+SELECT * FROM "SNOWFLAKE_HELLO_WORLD"."RAW"."HELLO_WORLD"
+```
+
+This should should not error and return empty
+
+* In AWS, drop the contents of `./examples` into the S3 bucket/hello-world path
+
+* Go back to Snowflake and run the below query again to see if data has been pulled to Snowflake from S3
+
+```sql
+SELECT * FROM "SNOWFLAKE_HELLO_WORLD"."RAW"."HELLO_WORLD"
 ```
